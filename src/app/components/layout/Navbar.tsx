@@ -1,194 +1,513 @@
-
 "use client";
+
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, Menu, X } from "lucide-react";
+import {
+  Menu,
+  X,
+  Phone,
+  ArrowRight,
+  Home,
+  Users,
+  Sun,
+  FolderKanban,
+  Award,
+  Mail,
+} from "lucide-react";
 
-export default function Navbar() {const [isOpen, setIsOpen] = useState(false);
+const navLinks = [
+  {
+    name: "Home",
+    href: "#home",
+    icon: Home,
+  },
+  {
+    name: "About",
+    href: "#about",
+    icon: Users,
+  },
+  {
+    name: "Services",
+    href: "#services",
+    icon: Sun,
+  },
+  {
+    name: "Projects",
+    href: "#projects",
+    icon: FolderKanban,
+  },
+  {
+    name: "Why Us",
+    href: "#why-us",
+    icon: Award,
+  },
+  {
+    name: "Contact",
+    href: "#contact",
+    icon: Mail,
+  },
+];
+
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-useEffect(() => {
-  const handleScroll = () => {
-    setScrolled(window.scrollY > 20);
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 30);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const closeMenu = () => {
+    setIsOpen(false);
   };
 
-  window.addEventListener("scroll", handleScroll);
-
-  return () => {
-    window.removeEventListener("scroll", handleScroll);
-  };
-}, []);
   return (
-    <nav
-  aria-label="Main navigation"
-  className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-    scrolled
-      ? "bg-white/80 backdrop-blur-lg shadow-xl"
-      : "bg-white shadow-md"
-  }`}
->
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-
-        {/* Logo */}
-        <a href="#home" className="flex items-center gap-2">
-  <Image
-    src="/logoo.png"
-    alt="Amperage Energy"
-    width={150}
-    height={150}
-    priority
-  />
-
-  <div>
-    <h1 className="text-xl font-bold tracking-wide text-gray-900">
-      AMPERAGE
-    </h1>
-
-    <p className="text-xs tracking-[0.3em] text-green-600 font-semibold">
-      ENERGY
-    </p>
-  </div>
-</a>
-
-        {/* Navigation Links */}
-    <ul className="hidden md:flex items-center gap-8 font-medium text-gray-700">
-
-  <li>
-    <a
-  href="#home"
-  className="hover:text-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 rounded transition-colors"
->
-      Home
-    </a>
-  </li>
-
-  <li>
-    <a
-  href="#about"
-  className="hover:text-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 rounded transition-colors"
->
-      About
-    </a>
-  </li>
-
-  <li>
-    <a
-  href="#services"
-  className="hover:text-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 rounded transition-colors"
->
-      Services
-    </a>
-  </li>
-
-  <li>
-    <a
-  href="#projects"
-  className="hover:text-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 rounded transition-colors"
->
-      Projects
-    </a>
-  </li>
-
-  <li>
-    <a
-  href="#contact"
-  className="hover:text-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 rounded transition-colors"
->
-      Contact
-    </a>
-  </li>
-
-</ul>
-
-        {/* Desktop CTA */}
-
-<button className="hidden md:flex items-center gap-2 bg-green-700 hover:bg-green-800 text-white px-5 py-2 rounded-lg transition">
-  
-  Get a Quote
-</button>
-
-{/* Mobile Menu Button */}
-
-<button
-  onClick={() => setIsOpen(true)}
-  className="md:hidden text-gray-700"
->
-  <Menu className="w-8 h-8" />
-</button>
-
-      </div>
-      <AnimatePresence>
-  {isOpen && (
     <>
-      {/* Overlay */}
-      <motion.div
-        className="fixed inset-0 bg-black/50 z-40"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        onClick={() => setIsOpen(false)}
-      />
-
-      {/* Mobile Menu */}
-      <motion.div
-        initial={{ x: "100%" }}
-        animate={{ x: 0 }}
-        exit={{ x: "100%" }}
-        transition={{ duration: 0.3 }}
-        className="fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-50 p-8"
+      {/* =====================================================
+          DESKTOP / MAIN NAVBAR
+      ===================================================== */}
+      <nav
+        aria-label="Main navigation"
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-white/95 backdrop-blur-xl shadow-lg border-b border-gray-100"
+            : "bg-white shadow-md"
+        }`}
       >
-        {/* Close Button */}
-        <div className="flex justify-end">
-          <button onClick={() => setIsOpen(false)}>
-            <X className="w-7 h-7 text-gray-700" />
-          </button>
+        <div className="max-w-7xl mx-auto px-5 sm:px-6">
+          <div className="h-[92px] flex items-center">
+
+            {/* =================================================
+                BRAND / LOGO
+            ================================================= */}
+            <a
+              href="#home"
+              aria-label="Amperage Energy Home"
+              className="flex items-center gap-4 group shrink-0"
+            >
+              {/* Larger logo container */}
+              <div className="relative w-[78px] h-[78px] flex items-center justify-center">
+                <Image
+                  src="/logoo.png"
+                  alt="Amperage Energy Logo"
+                  width={78}
+                  height={78}
+                  priority
+                  className="
+                    w-full
+                    h-full
+                    object-contain
+                    scale-[1.35]
+                    transition-transform
+                    duration-300
+                    group-hover:scale-[1.45]
+                  "
+                />
+              </div>
+
+              {/* Company name */}
+              <div className="leading-none">
+                <h1
+                  className="
+                    text-[27px]
+                    font-extrabold
+                    tracking-[0.03em]
+                    text-gray-900
+                  "
+                >
+                  AMPERAGE
+                </h1>
+
+                <p
+                  className="
+                    mt-2
+                    text-[11px]
+                    tracking-[0.48em]
+                    text-green-600
+                    font-bold
+                  "
+                >
+                  ENERGY
+                </p>
+              </div>
+            </a>
+
+            {/* =================================================
+                DESKTOP NAVIGATION
+            ================================================= */}
+            <div className="hidden lg:flex items-center ml-auto">
+
+              {/* Navigation Links */}
+              <ul className="flex items-center gap-8">
+                {navLinks.map((link) => (
+                  <li key={link.name}>
+                    <a
+                      href={link.href}
+                      className="
+                        relative
+                        py-3
+                        text-[15px]
+                        font-semibold
+                        text-gray-700
+                        hover:text-green-700
+                        transition-colors
+                        duration-300
+                        group
+                      "
+                    >
+                      {link.name}
+
+                      {/* Animated underline */}
+                      <span
+                        className="
+                          absolute
+                          left-0
+                          -bottom-0.5
+                          h-0.5
+                          w-0
+                          bg-green-600
+                          group-hover:w-full
+                          transition-all
+                          duration-300
+                        "
+                      />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+
+              {/* =================================================
+                  RIGHT ACTIONS
+              ================================================= */}
+              <div className="flex items-center gap-5 ml-9">
+
+                {/* Call Us */}
+                <a
+                  href="tel:+254700000000"
+                  className="
+                    flex
+                    items-center
+                    gap-2
+                    text-[15px]
+                    font-semibold
+                    text-gray-700
+                    hover:text-green-700
+                    transition-colors
+                  "
+                >
+                  <Phone className="w-[18px] h-[18px] text-green-600" />
+
+                  <span>Call Us</span>
+                </a>
+
+                {/* Get a Quote */}
+                <a
+                  href="#contact"
+                  className="
+                    group
+                    flex
+                    items-center
+                    gap-2.5
+                    bg-green-700
+                    hover:bg-green-800
+                    text-white
+                    px-6
+                    py-3.5
+                    rounded-xl
+                    text-[15px]
+                    font-bold
+                    shadow-md
+                    hover:shadow-xl
+                    hover:-translate-y-0.5
+                    transition-all
+                    duration-300
+                  "
+                >
+                  <span>Get a Quote</span>
+
+                  <ArrowRight
+                    className="
+                      w-[18px]
+                      h-[18px]
+                      group-hover:translate-x-1
+                      transition-transform
+                      duration-300
+                    "
+                  />
+                </a>
+              </div>
+            </div>
+
+            {/* =================================================
+                MOBILE MENU BUTTON
+            ================================================= */}
+            <button
+              onClick={() => setIsOpen(true)}
+              aria-label="Open navigation menu"
+              aria-expanded={isOpen}
+              className="
+                lg:hidden
+                ml-auto
+                p-2.5
+                rounded-xl
+                text-gray-700
+                hover:bg-gray-100
+                hover:text-green-700
+                transition
+              "
+            >
+              <Menu className="w-7 h-7" />
+            </button>
+          </div>
         </div>
+      </nav>
 
-        {/* Menu Links */}
-        <ul className="mt-10 space-y-6 text-lg font-medium text-gray-700">
+      {/* =====================================================
+          MOBILE NAVIGATION
+      ===================================================== */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Overlay */}
+            <motion.div
+              className="
+                fixed
+                inset-0
+                bg-black/50
+                backdrop-blur-sm
+                z-[60]
+              "
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeMenu}
+            />
 
-          <li onClick={() => setIsOpen(false)} className="hover:text-green-700 cursor-pointer">
-            Home
-          </li>
+            {/* Mobile Panel */}
+            <motion.aside
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{
+                duration: 0.35,
+                ease: "easeInOut",
+              }}
+              className="
+                fixed
+                top-0
+                right-0
+                h-full
+                w-[88%]
+                max-w-sm
+                bg-white
+                z-[70]
+                shadow-2xl
+              "
+              aria-label="Mobile navigation"
+            >
 
-          <li onClick={() => setIsOpen(false)} className="hover:text-green-700 cursor-pointer">
-            About
-          </li>
+              {/* =================================================
+                  MOBILE HEADER
+              ================================================= */}
+              <div
+                className="
+                  flex
+                  items-center
+                  justify-between
+                  px-6
+                  py-5
+                  border-b
+                  border-gray-100
+                "
+              >
+                {/* Mobile Brand */}
+                <a
+                  href="#home"
+                  onClick={closeMenu}
+                  className="flex items-center gap-3"
+                >
+                  <div className="relative w-[55px] h-[55px] flex items-center justify-center">
+                    <Image
+                      src="/logoo.png"
+                      alt="Amperage Energy Logo"
+                      width={55}
+                      height={55}
+                      className="w-full h-full object-contain scale-[1.25]"
+                    />
+                  </div>
 
-          <li onClick={() => setIsOpen(false)} className="hover:text-green-700 cursor-pointer">
-            Services
-          </li>
+                  <div className="leading-none">
+                    <p className="text-lg font-extrabold tracking-wide text-gray-900">
+                      AMPERAGE
+                    </p>
 
-          <li onClick={() => setIsOpen(false)} className="hover:text-green-700 cursor-pointer">
-            Projects
-          </li>
+                    <p className="mt-1.5 text-[9px] tracking-[0.35em] text-green-600 font-bold">
+                      ENERGY
+                    </p>
+                  </div>
+                </a>
 
-          <li onClick={() => setIsOpen(false)} className="hover:text-green-700 cursor-pointer">
-            Products
-          </li>
+                {/* Close Button */}
+                <button
+                  onClick={closeMenu}
+                  aria-label="Close navigation menu"
+                  className="
+                    p-2.5
+                    rounded-xl
+                    text-gray-700
+                    hover:bg-gray-100
+                    hover:text-green-700
+                    transition
+                  "
+                >
+                  <X className="w-7 h-7" />
+                </button>
+              </div>
 
-          <li onClick={() => setIsOpen(false)} className="hover:text-green-700 cursor-pointer">
-            Blog
-          </li>
+              {/* =================================================
+                  MOBILE LINKS
+              ================================================= */}
+              <div className="px-6 py-8">
 
-          <li onClick={() => setIsOpen(false)} className="hover:text-green-700 cursor-pointer">
-            Contact
-          </li>
+                <p
+                  className="
+                    text-xs
+                    uppercase
+                    tracking-[0.2em]
+                    text-gray-400
+                    font-semibold
+                    mb-5
+                  "
+                >
+                  Navigation
+                </p>
 
-        </ul>
+                <ul className="space-y-2">
+                  {navLinks.map((link) => {
+                    const Icon = link.icon;
 
-        {/* CTA Button */}
-        <button
-          className="mt-10 w-full flex items-center justify-center gap-2 bg-green-700 hover:bg-green-800 text-white py-3 rounded-lg transition"
-        >
-          
-          Get a Quote
-        </button>
-      </motion.div>
+                    return (
+                      <li key={link.name}>
+                        <a
+                          href={link.href}
+                          onClick={closeMenu}
+                          className="
+                            flex
+                            items-center
+                            gap-4
+                            px-4
+                            py-4
+                            rounded-xl
+                            text-gray-700
+                            font-semibold
+                            hover:bg-green-50
+                            hover:text-green-700
+                            transition-all
+                            duration-200
+                          "
+                        >
+                          <Icon className="w-5 h-5 text-green-600" />
+
+                          <span>{link.name}</span>
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+
+                {/* =================================================
+                    MOBILE CTA
+                ================================================= */}
+                <div className="mt-8 pt-6 border-t border-gray-100">
+
+                  <a
+                    href="#contact"
+                    onClick={closeMenu}
+                    className="
+                      group
+                      w-full
+                      flex
+                      items-center
+                      justify-center
+                      gap-2
+                      bg-green-700
+                      hover:bg-green-800
+                      text-white
+                      py-4
+                      rounded-xl
+                      font-bold
+                      shadow-md
+                      hover:shadow-lg
+                      transition-all
+                      duration-300
+                    "
+                  >
+                    <span>Get a Quote</span>
+
+                    <ArrowRight
+                      className="
+                        w-5
+                        h-5
+                        group-hover:translate-x-1
+                        transition-transform
+                      "
+                    />
+                  </a>
+
+                  <a
+                    href="tel:+254700000000"
+                    className="
+                      mt-5
+                      flex
+                      items-center
+                      justify-center
+                      gap-2
+                      text-sm
+                      font-semibold
+                      text-gray-600
+                      hover:text-green-700
+                      transition
+                    "
+                  >
+                    <Phone className="w-4 h-4 text-green-600" />
+
+                    <span>Call Amperage Energy</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* =================================================
+                  MOBILE FOOTER
+              ================================================= */}
+              <div
+                className="
+                  absolute
+                  bottom-0
+                  left-0
+                  right-0
+                  px-6
+                  py-5
+                  bg-gray-50
+                  border-t
+                  border-gray-100
+                "
+              >
+                <p className="text-xs text-center text-gray-500">
+                  Powering a Sustainable Future
+                </p>
+              </div>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
     </>
-  )}
-</AnimatePresence>
-    </nav>
   );
 }

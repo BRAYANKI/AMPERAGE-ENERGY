@@ -7,7 +7,8 @@ import Projects from "./components/Projects";
 import Testimonials from "./components/Testimonials";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import AnimatedSection from "./components/AnimatedSection";
+import WhatsAppButton from "./components/WhatsAppButton";
+
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
       <Testimonials />
       <Contact/>
       <Footer />
+      <WhatsAppButton />
 
     
     
