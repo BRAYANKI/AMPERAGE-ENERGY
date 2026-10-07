@@ -11,6 +11,7 @@ import {
   Zap,
   BatteryCharging,
   CircleDollarSign,
+  PlayCircle,
 } from "lucide-react";
 
 type Project = {
@@ -46,7 +47,16 @@ const projects: Project[] = [
     energyDemand: "12,240 kWh / year",
     monthlyBill: "KES 30,000",
     annualSavings: "Up to KES 360,000 / year",
-    photos: ["/ms1.jpeg", "/ms2.jpeg", "/ms3.jpeg", "/ms4.jpeg", "/ms5.jpeg", "/ms6.jpeg", "/ms7.jpeg","/inverter.jpeg", ],
+    photos: [
+      "/ms1.jpeg",
+      "/ms2.jpeg",
+      "/ms3.jpeg",
+      "/ms4.jpeg",
+      "/ms5.jpeg",
+      "/ms6.jpeg",
+      "/ms7.jpeg",
+      "/inverter.jpeg",
+    ],
   },
 
   {
@@ -64,7 +74,16 @@ const projects: Project[] = [
     energyDemand: "5,045 kWh / year",
     monthlyBill: "KES 12,000",
     annualSavings: "Up to KES 129,600 / year",
-    photos: ["/m1.jpeg","/mr1.jpeg", "/mr2.jpeg", "/mr3.jpeg", "/mr4.jpeg", "/mr5.jpeg", "/mr6.jpeg", "/mr7.jpeg", ],
+    photos: [
+      "/m1.jpeg",
+      "/mr1.jpeg",
+      "/mr2.jpeg",
+      "/mr3.jpeg",
+      "/mr4.jpeg",
+      "/mr5.jpeg",
+      "/mr6.jpeg",
+      "/mr7.jpeg",
+    ],
     video: ["/mrvid.mp4"],
   },
 
@@ -83,11 +102,17 @@ const projects: Project[] = [
     energyDemand: "83,964 kWh / year",
     monthlyBill: "KES 200,000",
     annualSavings: "Up to KES 2,160,000 / year",
-    photos: ["/m4.jpeg", "/m6h.jpeg", "/m7h.jpeg", "/m8h.jpeg", "/m9h.jpeg", "/m10.jpeg","/minspr.jpeg"],
-    video: ["/mhvid.mp4","/mhvid2.mp4"],
-    
+    photos: [
+      "/m4.jpeg",
+      "/m6h.jpeg",
+      "/m7h.jpeg",
+      "/m8h.jpeg",
+      "/m9h.jpeg",
+      "/m10.jpeg",
+      "/minspr.jpeg",
+    ],
+    video: ["/mhvid.mp4", "/mhvid2.mp4"],
   },
-  
 
   {
     image: "/heat_pump.jpg",
@@ -104,7 +129,7 @@ const projects: Project[] = [
     energyDemand: "Reduced water-heating demand",
     monthlyBill: "Energy efficiency solution",
     annualSavings: "Reduced electricity consumption",
-    photos: ["/heatpump1.jpeg", ],
+    photos: ["/heatpump1.jpeg"],
   },
 ];
 
@@ -132,7 +157,9 @@ const card = {
 };
 
 export default function Projects() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(
+    null
+  );
 
   return (
     <section id="projects" className="py-24 bg-gray-50">
@@ -140,14 +167,19 @@ export default function Projects() {
 
         {/* Section Heading */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
-            Our Recent Projects
+          <p className="text-sm font-bold tracking-[0.2em] uppercase text-green-600">
+            Our Work
+          </p>
+
+          <h2 className="mt-4 text-4xl md:text-5xl font-bold text-gray-900">
+            Projects &{" "}
+            <span className="text-green-700">Case Studies</span>
           </h2>
 
           <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
-            Discover how Amperage Energy Solutions is transforming homes,
-            businesses, institutions and healthcare facilities with reliable
-            renewable energy solutions.
+            Explore how we engineer energy solutions around real-world
+            consumption, operational requirements, and the need for reliable
+            and cost-effective power.
           </p>
         </div>
 
@@ -184,7 +216,7 @@ export default function Projects() {
                     onClick={() => setSelectedProject(project)}
                     className="bg-white text-green-700 px-5 py-3 rounded-lg font-semibold flex items-center gap-2 hover:bg-green-50 transition"
                   >
-                    View Project
+                    View Case Study
                     <ArrowRight className="w-5 h-5" />
                   </button>
                 </div>
@@ -216,7 +248,7 @@ export default function Projects() {
                   onClick={() => setSelectedProject(project)}
                   className="inline-flex items-center gap-2 text-green-700 font-semibold hover:text-green-900 transition"
                 >
-                  View Project
+                  Explore Case Study
                   <ArrowRight className="w-4 h-4" />
                 </button>
 
@@ -358,6 +390,46 @@ export default function Projects() {
 
                 </div>
 
+                {/* Videos */}
+                {selectedProject.video &&
+                  selectedProject.video.length > 0 && (
+                    <div className="mt-12">
+
+                      <div className="flex items-center gap-3 mb-6">
+                        <PlayCircle className="w-7 h-7 text-green-600" />
+
+                        <h3 className="text-2xl font-bold text-gray-900">
+                          Project Videos
+                        </h3>
+                      </div>
+
+                      <div
+                        className={`grid gap-5 ${
+                          selectedProject.video.length > 1
+                            ? "md:grid-cols-2"
+                            : "grid-cols-1"
+                        }`}
+                      >
+                        {selectedProject.video.map((video, index) => (
+                          <div
+                            key={index}
+                            className="relative overflow-hidden rounded-2xl bg-black shadow-lg"
+                          >
+                            <video
+                              controls
+                              preload="metadata"
+                              className="w-full h-auto max-h-[500px]"
+                            >
+                              <source src={video} type="video/mp4" />
+                              Your browser does not support video playback.
+                            </video>
+                          </div>
+                        ))}
+                      </div>
+
+                    </div>
+                  )}
+
                 {/* Photos */}
                 <div className="mt-12">
 
@@ -374,7 +446,9 @@ export default function Projects() {
                         >
                           <Image
                             src={photo}
-                            alt={`${selectedProject.title} project photo ${index + 1}`}
+                            alt={`${selectedProject.title} project photo ${
+                              index + 1
+                            }`}
                             fill
                             className="object-cover hover:scale-105 transition duration-500"
                           />
@@ -398,11 +472,12 @@ export default function Projects() {
 
                   <div>
                     <h3 className="text-xl font-bold">
-                      Interested in a similar solution?
+                      Want a solution engineered around your energy needs?
                     </h3>
 
                     <p className="text-green-100 mt-1">
-                      Talk to our team about your energy requirements.
+                      Share your electricity bill with our team and let&apos;s
+                      assess your energy requirements.
                     </p>
                   </div>
 
@@ -411,7 +486,7 @@ export default function Projects() {
                     onClick={() => setSelectedProject(null)}
                     className="inline-flex items-center gap-2 bg-white text-green-800 px-6 py-3 rounded-lg font-semibold hover:bg-green-50 transition whitespace-nowrap"
                   >
-                    Get a Quote
+                    Engineer My Energy Solution
                     <ArrowRight className="w-5 h-5" />
                   </a>
 

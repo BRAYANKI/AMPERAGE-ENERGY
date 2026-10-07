@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import {
   Phone,
   MapPin,
@@ -20,8 +21,8 @@ export default function Footer() {
           {/* Company */}
           <div>
 
-            <a
-              href="#home"
+            <Link
+              href="/"
               className="inline-flex items-center gap-3"
             >
               <Image
@@ -41,7 +42,7 @@ export default function Footer() {
                   ENERGY
                 </p>
               </div>
-            </a>
+            </Link>
 
             <p className="mt-6 text-green-100 leading-relaxed">
               Reliable and innovative renewable energy solutions designed
@@ -86,57 +87,57 @@ export default function Footer() {
             <ul className="space-y-4">
 
               <li>
-                <a
-                  href="#home"
+                <Link
+                  href="/"
                   className="text-green-100 hover:text-white hover:translate-x-1 inline-block transition"
                 >
                   Home
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
-                  href="#about"
+                <Link
+                  href="/about"
                   className="text-green-100 hover:text-white hover:translate-x-1 inline-block transition"
                 >
                   About Us
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
-                  href="#services"
+                <Link
+                  href="/services"
                   className="text-green-100 hover:text-white hover:translate-x-1 inline-block transition"
                 >
                   Our Services
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
-                  href="#projects"
+                <Link
+                  href="/projects"
                   className="text-green-100 hover:text-white hover:translate-x-1 inline-block transition"
                 >
                   Projects
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
-                  href="#testimonials"
+                <Link
+                  href="/why-choose-us"
                   className="text-green-100 hover:text-white hover:translate-x-1 inline-block transition"
                 >
-                  Testimonials
-                </a>
+                  Why Choose Us
+                </Link>
               </li>
 
               <li>
-                <a
-                  href="#contact"
+                <Link
+                  href="/contacts"
                   className="text-green-100 hover:text-white hover:translate-x-1 inline-block transition"
                 >
                   Contact Us
-                </a>
+                </Link>
               </li>
 
             </ul>
@@ -152,52 +153,52 @@ export default function Footer() {
 
             <ul className="space-y-4">
 
-  <li>
-    <a
-      href="#services"
-      className="text-green-100 hover:text-white hover:translate-x-1 inline-block transition"
-    >
-      Solar Installation
-    </a>
-  </li>
+              <li>
+                <Link
+                  href="/services"
+                  className="text-green-100 hover:text-white hover:translate-x-1 inline-block transition"
+                >
+                  Solar Installation
+                </Link>
+              </li>
 
-  <li>
-    <a
-      href="#services"
-      className="text-green-100 hover:text-white hover:translate-x-1 inline-block transition"
-    >
-      Battery Storage
-    </a>
-  </li>
+              <li>
+                <Link
+                  href="/services"
+                  className="text-green-100 hover:text-white hover:translate-x-1 inline-block transition"
+                >
+                  Battery Storage
+                </Link>
+              </li>
 
-  <li>
-    <a
-      href="#services"
-      className="text-green-100 hover:text-white hover:translate-x-1 inline-block transition"
-    >
-      Heat Pump Water Heating
-    </a>
-  </li>
+              <li>
+                <Link
+                  href="/services"
+                  className="text-green-100 hover:text-white hover:translate-x-1 inline-block transition"
+                >
+                  Heat Pump Water Heating
+                </Link>
+              </li>
 
-  <li>
-    <a
-      href="#services"
-      className="text-green-100 hover:text-white hover:translate-x-1 inline-block transition"
-    >
-      Energy Audits
-    </a>
-  </li>
+              <li>
+                <Link
+                  href="/services"
+                  className="text-green-100 hover:text-white hover:translate-x-1 inline-block transition"
+                >
+                  Energy Audits
+                </Link>
+              </li>
 
-  <li>
-    <a
-      href="#services"
-      className="text-green-100 hover:text-white hover:translate-x-1 inline-block transition"
-    >
-      Solar System Maintenance
-    </a>
-  </li>
+              <li>
+                <Link
+                  href="/services"
+                  className="text-green-100 hover:text-white hover:translate-x-1 inline-block transition"
+                >
+                  Solar System Maintenance
+                </Link>
+              </li>
 
-</ul>
+            </ul>
 
           </div>
 
@@ -256,13 +257,13 @@ export default function Footer() {
             </div>
 
             {/* Quote Button */}
-            <a
-              href="#contact"
+            <Link
+              href="/contacts"
               className="mt-7 inline-flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:-translate-y-1"
             >
               Get a Quote
               <ArrowRight className="w-5 h-5" />
-            </a>
+            </Link>
 
           </div>
 
@@ -284,19 +285,19 @@ export default function Footer() {
 
             <div className="flex items-center gap-6 text-sm">
 
-              <a
-                href="#contact"
+              <Link
+                href="/contacts"
                 className="text-green-200 hover:text-white transition"
               >
                 Privacy
-              </a>
+              </Link>
 
-              <a
-                href="#contact"
+              <Link
+                href="/contacts"
                 className="text-green-200 hover:text-white transition"
               >
                 Terms
-              </a>
+              </Link>
 
             </div>
 

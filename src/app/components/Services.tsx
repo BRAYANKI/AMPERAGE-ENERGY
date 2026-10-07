@@ -18,28 +18,32 @@ const services = [
     icon: <Sun className="w-6 h-6" />,
     title: "Solar Installation",
     description:
-      "Professional solar PV installation for homes, businesses, institutions, and other energy-intensive facilities.",
+      "Professionally engineered solar PV systems designed around your electricity consumption, operating patterns, available space, and future energy requirements.",
+    cta: "Get My Solar Assessment",
   },
   {
     image: "/Inverter.jpeg",
     icon: <BatteryCharging className="w-6 h-6" />,
     title: "Inverter & Battery Systems",
     description:
-      "Reliable inverter and battery storage solutions designed to provide efficient energy management and dependable backup power.",
+      "Smart inverter and battery storage solutions that help reduce grid dependence, protect critical loads, manage energy efficiently, and provide reliable backup power.",
+    cta: "Get My Energy Savings",
   },
   {
     image: "/heatpump.jpeg",
     icon: <ThermometerSun className="w-6 h-6" />,
     title: "Heat Pump Solutions",
     description:
-      "Energy-efficient heat pump systems for hot water and heating applications, helping reduce energy consumption and operating costs.",
+      "Energy-efficient heat pump systems for hot water applications, engineered to reduce electricity consumption and lower long-term operating costs.",
+    cta: "Calculate My Hot Water Savings",
   },
   {
     image: "/maintainance.jpeg",
     icon: <Wrench className="w-6 h-6" />,
     title: "Maintenance & Support",
     description:
-      "Professional maintenance, inspections, troubleshooting, and technical support to keep your energy systems performing efficiently.",
+      "Professional inspections, preventive maintenance, troubleshooting, and technical support to keep your energy system performing efficiently long after commissioning.",
+    cta: "Keep Your System Performing",
   },
 ];
 
@@ -85,14 +89,15 @@ export default function Services() {
           </p>
 
           <h2 className="mt-4 text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-            Our Energy
-            <span className="text-green-700"> Solutions</span>
+            Energy Solutions
+            <span className="text-green-700"> Built Around You</span>
           </h2>
 
           <p className="mt-5 text-lg text-gray-600 leading-relaxed">
-            From solar power generation and energy storage to heat pump
-            solutions and system maintenance, we provide practical energy
-            solutions designed around your needs.
+            We don't begin with a product catalogue. We begin with your
+            energy profile — understanding how you consume electricity,
+            where costs are coming from, and what your facility needs to
+            operate reliably.
           </p>
         </motion.div>
 
@@ -117,8 +122,8 @@ export default function Services() {
                   src={service.image}
                   alt={service.title}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
 
                 {/* Image Overlay */}
@@ -147,7 +152,8 @@ export default function Services() {
                   href="#contact"
                   className="group/link mt-6 inline-flex items-center gap-2 text-green-700 font-semibold hover:text-green-800 transition-colors"
                 >
-                  Get a Quote
+                  {service.cta}
+
                   <ArrowRight className="w-5 h-5 transition-transform group-hover/link:translate-x-1" />
                 </a>
               </div>
@@ -161,40 +167,52 @@ export default function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7 }}
-          className="mt-10 overflow-hidden rounded-2xl bg-green-900"
+          className="relative mt-10 overflow-hidden rounded-2xl min-h-[380px] md:min-h-[420px]"
         >
-          <div className="grid lg:grid-cols-[auto_1fr_auto] items-center gap-6 p-7 md:p-9">
+          {/* Background Image */}
+          <Image
+            src="/energy-audit.jpg"
+            alt="Energy audits and consultation"
+            fill
+            sizes="(max-width: 768px) 100vw, 1200px"
+            className="object-cover"
+          />
 
-            {/* Icon */}
-            <div className="w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center">
-              <ClipboardCheck className="w-8 h-8 text-green-300" />
-            </div>
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-green-950/95 via-green-950/80 to-green-950/40" />
 
-            {/* Text */}
-            <div>
+          {/* Energy Audit Content */}
+          <div className="relative z-10 min-h-[380px] md:min-h-[420px] flex items-center">
+            <div className="max-w-3xl p-7 md:p-12">
+
+              {/* Icon */}
+              <div className="w-14 h-14 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center mb-6">
+                <ClipboardCheck className="w-7 h-7 text-green-300" />
+              </div>
+
               <p className="text-sm font-semibold uppercase tracking-[0.15em] text-green-300">
                 Energy Efficiency
               </p>
 
-              <h3 className="mt-2 text-2xl md:text-3xl font-bold text-white">
+              <h3 className="mt-3 text-3xl md:text-4xl font-bold text-white leading-tight">
                 Energy Audits & Consultation
               </h3>
 
-              <p className="mt-3 text-green-100/80 leading-relaxed max-w-3xl">
-                We assess how energy is being consumed, identify areas of
-                inefficiency, and recommend practical ways to reduce energy
-                waste and improve overall system performance.
+              <p className="mt-5 text-base md:text-lg text-green-50/90 leading-relaxed">
+                Find out where your money is going before you invest in
+                solar. We analyze your electricity consumption, operating
+                patterns, and energy-intensive loads to identify
+                opportunities to reduce costs and improve efficiency.
               </p>
-            </div>
 
-            {/* CTA */}
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center gap-2 whitespace-nowrap bg-white text-green-800 px-6 py-3 rounded-lg font-semibold hover:bg-green-50 transition-colors"
-            >
-              Request an Audit
-              <ArrowRight className="w-5 h-5" />
-            </a>
+              <a
+                href="#contact"
+                className="mt-7 inline-flex items-center justify-center gap-2 bg-white text-green-800 px-6 py-3.5 rounded-lg font-semibold hover:bg-green-50 transition-all duration-300 shadow-lg"
+              >
+                Find Out Where Your Money Is Going
+                <ArrowRight className="w-5 h-5" />
+              </a>
+            </div>
           </div>
         </motion.div>
 
@@ -207,14 +225,14 @@ export default function Services() {
           className="mt-14 text-center"
         >
           <p className="text-gray-600">
-            Looking for the right energy solution for your home or business?
+            Not sure which energy solution is right for you?
           </p>
 
           <a
             href="#contact"
             className="mt-4 inline-flex items-center gap-2 bg-green-700 text-white px-7 py-3.5 rounded-lg font-semibold hover:bg-green-800 transition-all duration-300 shadow-md hover:shadow-lg"
           >
-            Talk to Our Team
+            Talk to Our Energy Team
             <Zap className="w-5 h-5" />
           </a>
         </motion.div>

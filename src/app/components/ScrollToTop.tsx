@@ -31,7 +31,8 @@ export default function ScrollToTop() {
           behavior: "smooth",
         })
       }
-      className="fixed bottom-6 right-6 z-[9999] bg-green-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-xl hover:bg-green-700"
+      aria-label="Return to top"
+      className="fixed bottom-24 right-6 z-[9999] bg-green-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-xl hover:bg-green-700 transition-all duration-300"
     >
       ↑
     </button>

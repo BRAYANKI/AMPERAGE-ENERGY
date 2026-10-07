@@ -37,17 +37,20 @@ export default function Stats() {
     <AnimatedSection>
       <section
         ref={ref}
-        className="bg-gradient-to-r from-green-800 via-green-700 to-green-600 text-white py-20"
+        className="relative bg-green-950 text-white py-20 overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto px-6">
+        {/* Background Gradient */}
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-green-950 via-green-900 to-green-800 opacity-90"
+          aria-hidden="true"
+        />
 
+        {/* Stats Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
-
             {stats.map((stat, index) => (
               <div key={index}>
-
-                <h2 className="text-5xl font-bold">
-
+                <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
                   {inView ? (
                     <CountUp
                       end={stat.number}
@@ -58,18 +61,14 @@ export default function Stats() {
                   )}
 
                   {stat.suffix}
-
                 </h2>
 
-                <p className="mt-3 text-lg text-green-100">
+                <p className="mt-3 text-sm md:text-base text-green-100 font-medium">
                   {stat.label}
                 </p>
-
               </div>
             ))}
-
           </div>
-
         </div>
       </section>
     </AnimatedSection>

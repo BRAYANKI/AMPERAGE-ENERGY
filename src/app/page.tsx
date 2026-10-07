@@ -1,31 +1,31 @@
-import Navbar from "./components/layout/Navbar";
-import Hero from "./components/home/Hero";
+import Hero from "./components/Hero";
 import Stats from "./components/Stats";
-import About from "./components/About";
-import Services from "./components/Services";
-import Projects from "./components/Projects";
-import Testimonials from "./components/Testimonials";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-import WhatsAppButton from "./components/WhatsAppButton";
-
+import AboutPreview from "./components/home/AboutPreview";
+import ServicesPreview from "./components/home/Services";
+import ProjectsPreview from "./components/home/Projects";
+import Industries from "./components/home/Industries";
+import SolarBenefits from "./components/SolarBenefits";
+import TechnologyPartners from "./components/TechnologyPartners";
+import Process from "./components/Process";
+import TestimonialsPreview from "./components/home/Testimonials";
+import Insights from "./components/Insights";
+import CTA from "./components/home/CTA";
 
 export default function Home() {
   return (
-    <>
-      <Navbar />
+    <main>
       <Hero />
       <Stats />
-      <About />
-      <Services />
-      <Projects />
-      <Testimonials />
-      <Contact/>
-      <Footer />
-      <WhatsAppButton />
-
-    
-    
-    </>
+      <AboutPreview />
+      <ServicesPreview />
+      <ProjectsPreview />
+      <Industries />
+      <SolarBenefits />
+      <TechnologyPartners />
+      <Process />
+      <TestimonialsPreview />
+      <Insights />
+      <CTA />
+    </main>
   );
 }

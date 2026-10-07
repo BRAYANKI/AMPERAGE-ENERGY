@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -12,39 +13,38 @@ import {
   Users,
   Sun,
   FolderKanban,
-  Award,
   Mail,
 } from "lucide-react";
 
 const navLinks = [
   {
     name: "Home",
-    href: "#home",
+    href: "/",
     icon: Home,
   },
   {
     name: "About",
-    href: "#about",
+    href: "/about",
     icon: Users,
   },
   {
     name: "Services",
-    href: "#services",
+    href: "/services",
     icon: Sun,
   },
   {
     name: "Projects",
-    href: "#projects",
+    href: "/projects",
     icon: FolderKanban,
   },
   {
-    name: "Why Us",
-    href: "#why-us",
-    icon: Award,
+    name: "Why Choose Us",
+    href: "/why-choose-us",
+    icon: Sun,
   },
   {
-    name: "Contact",
-    href: "#contact",
+    name: "Contact Us",
+    href: "/contacts",
     icon: Mail,
   },
 ];
@@ -88,12 +88,12 @@ export default function Navbar() {
             {/* =================================================
                 BRAND / LOGO
             ================================================= */}
-            <a
-              href="#home"
+            <Link
+              href="/"
               aria-label="Amperage Energy Home"
               className="flex items-center gap-4 group shrink-0"
+              onClick={closeMenu}
             >
-              {/* Larger logo container */}
               <div className="relative w-[78px] h-[78px] flex items-center justify-center">
                 <Image
                   src="/logoo.png"
@@ -113,7 +113,6 @@ export default function Navbar() {
                 />
               </div>
 
-              {/* Company name */}
               <div className="leading-none">
                 <h1
                   className="
@@ -138,18 +137,16 @@ export default function Navbar() {
                   ENERGY
                 </p>
               </div>
-            </a>
+            </Link>
 
             {/* =================================================
                 DESKTOP NAVIGATION
             ================================================= */}
             <div className="hidden lg:flex items-center ml-auto">
-
-              {/* Navigation Links */}
               <ul className="flex items-center gap-8">
                 {navLinks.map((link) => (
                   <li key={link.name}>
-                    <a
+                    <Link
                       href={link.href}
                       className="
                         relative
@@ -165,7 +162,6 @@ export default function Navbar() {
                     >
                       {link.name}
 
-                      {/* Animated underline */}
                       <span
                         className="
                           absolute
@@ -179,7 +175,7 @@ export default function Navbar() {
                           duration-300
                         "
                       />
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -191,7 +187,7 @@ export default function Navbar() {
 
                 {/* Call Us */}
                 <a
-                  href="tel:+254700000000"
+                  href="tel:+254741480031"
                   className="
                     flex
                     items-center
@@ -204,13 +200,12 @@ export default function Navbar() {
                   "
                 >
                   <Phone className="w-[18px] h-[18px] text-green-600" />
-
                   <span>Call Us</span>
                 </a>
 
                 {/* Get a Quote */}
-                <a
-                  href="#contact"
+                <Link
+                  href="/contacts"
                   className="
                     group
                     flex
@@ -242,7 +237,7 @@ export default function Navbar() {
                       duration-300
                     "
                   />
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -328,9 +323,8 @@ export default function Navbar() {
                   border-gray-100
                 "
               >
-                {/* Mobile Brand */}
-                <a
-                  href="#home"
+                <Link
+                  href="/"
                   onClick={closeMenu}
                   className="flex items-center gap-3"
                 >
@@ -353,9 +347,8 @@ export default function Navbar() {
                       ENERGY
                     </p>
                   </div>
-                </a>
+                </Link>
 
-                {/* Close Button */}
                 <button
                   onClick={closeMenu}
                   aria-label="Close navigation menu"
@@ -376,7 +369,6 @@ export default function Navbar() {
                   MOBILE LINKS
               ================================================= */}
               <div className="px-6 py-8">
-
                 <p
                   className="
                     text-xs
@@ -396,7 +388,7 @@ export default function Navbar() {
 
                     return (
                       <li key={link.name}>
-                        <a
+                        <Link
                           href={link.href}
                           onClick={closeMenu}
                           className="
@@ -415,9 +407,8 @@ export default function Navbar() {
                           "
                         >
                           <Icon className="w-5 h-5 text-green-600" />
-
                           <span>{link.name}</span>
-                        </a>
+                        </Link>
                       </li>
                     );
                   })}
@@ -427,9 +418,8 @@ export default function Navbar() {
                     MOBILE CTA
                 ================================================= */}
                 <div className="mt-8 pt-6 border-t border-gray-100">
-
-                  <a
-                    href="#contact"
+                  <Link
+                    href="/contacts"
                     onClick={closeMenu}
                     className="
                       group
@@ -460,7 +450,7 @@ export default function Navbar() {
                         transition-transform
                       "
                     />
-                  </a>
+                  </Link>
 
                   <a
                     href="tel:+254700000000"
@@ -478,7 +468,6 @@ export default function Navbar() {
                     "
                   >
                     <Phone className="w-4 h-4 text-green-600" />
-
                     <span>Call Amperage Energy</span>
                   </a>
                 </div>

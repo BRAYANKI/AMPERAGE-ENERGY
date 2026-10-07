@@ -6,7 +6,6 @@ import {
   Eye,
   ArrowRight,
   ShieldCheck,
-  Lightbulb,
   Leaf,
 } from "lucide-react";
 
@@ -26,14 +25,14 @@ export default function About() {
             </p>
 
             <h2 className="mt-4 text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-              Powering Progress Through
-              <span className="text-green-700"> Clean Energy</span>
+              Reduce Your Energy Costs.
+              <span className="text-green-700"> Improve Reliability.</span>
             </h2>
 
             <p className="mt-6 text-lg text-gray-600 leading-relaxed">
-              We provide dependable solar energy solutions designed to help
-              homes, businesses, institutions, and industries achieve greater
-              energy independence.
+              We engineer practical energy systems designed around how you
+              consume electricity, helping homes, businesses, institutions,
+              and industries operate with greater confidence and control.
             </p>
           </div>
 
@@ -45,7 +44,7 @@ export default function About() {
               <div className="relative overflow-hidden rounded-2xl shadow-xl">
                 <Image
                   src="/about-solar.jpg"
-                  alt="Solar panels installed by Amperage Energy"
+                  alt="Solar energy system installed by Amperage Energy"
                   width={800}
                   height={600}
                   className="w-full h-auto object-cover"
@@ -64,10 +63,10 @@ export default function About() {
 
                   <div>
                     <p className="text-sm font-bold text-gray-900">
-                      Trusted Solutions
+                      Engineered for You
                     </p>
                     <p className="text-xs text-gray-500 mt-1">
-                      Built for reliability
+                      Built around your energy needs
                     </p>
                   </div>
                 </div>
@@ -78,20 +77,25 @@ export default function About() {
             <div>
 
               <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
-                Reliable Energy Solutions for a Better Future
+                Energy Costs Are an Operating Cost We Can Engineer Down
               </h3>
 
               <p className="mt-6 text-gray-600 leading-relaxed">
-                At Amperage Energy, we believe access to reliable and
-                sustainable energy is essential for growth. Our approach
-                combines quality equipment, professional system design,
-                expert installation, and dependable customer support.
+                Energy costs are becoming an increasingly important part of
+                running a home, business, or institution.
               </p>
 
               <p className="mt-4 text-gray-600 leading-relaxed">
-                From residential installations to commercial and institutional
-                projects, we develop practical solar solutions tailored to each
-                customer's energy needs.
+                We believe customers shouldn&apos;t have to choose between
+                reliable power and sustainable energy. Amperage was built to
+                bridge that gap through practical engineering, transparent
+                advice, and professionally delivered energy systems.
+              </p>
+
+              <p className="mt-4 text-gray-600 leading-relaxed">
+                We look beyond individual products and focus on the complete
+                energy picture — your consumption, operating patterns,
+                critical loads, future requirements, and investment goals.
               </p>
 
               {/* Values */}
@@ -99,39 +103,47 @@ export default function About() {
 
                 <div className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
+
                   <div>
                     <h4 className="font-semibold text-gray-900">
-                      Quality & Reliability
+                      Practical Engineering
                     </h4>
+
                     <p className="text-sm text-gray-600 mt-1">
-                      We focus on dependable equipment and professional
-                      installation.
+                      We design systems around real consumption patterns,
+                      operating requirements, and future energy needs.
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
+
                   <div>
                     <h4 className="font-semibold text-gray-900">
-                      Customer-Centered Solutions
+                      Transparent Advice
                     </h4>
+
                     <p className="text-sm text-gray-600 mt-1">
-                      Every system is designed around the customer's unique
-                      energy requirements.
+                      We help you understand your energy costs, expected
+                      savings, system requirements, and investment before you
+                      commit.
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
+
                   <div>
                     <h4 className="font-semibold text-gray-900">
-                      Sustainable Impact
+                      Long-Term Support
                     </h4>
+
                     <p className="text-sm text-gray-600 mt-1">
-                      We help customers transition toward cleaner and smarter
-                      energy.
+                      Our relationship doesn&apos;t end at commissioning. We
+                      support system performance through monitoring,
+                      maintenance, and technical assistance.
                     </p>
                   </div>
                 </div>
@@ -140,10 +152,10 @@ export default function About() {
 
               {/* CTA */}
               <a
-                href="#services"
+                href="/services"
                 className="group inline-flex items-center gap-2 mt-9 text-green-700 font-semibold hover:text-green-800 transition-colors"
               >
-                Explore Our Solutions
+                Reduce your electricity costs, Improve energy reliability
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
 
@@ -154,51 +166,59 @@ export default function About() {
           <div className="mt-24 grid md:grid-cols-3 gap-6">
 
             {/* Mission */}
-            <div className="group p-7 rounded-2xl bg-gray-50 border border-gray-100 hover:border-green-200 hover:shadow-lg transition-all duration-300">
-              <div className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center">
-                <Target className="w-6 h-6 text-green-700" />
+            <div className="group p-7 rounded-2xl bg-emerald-50 border border-emerald-200 hover:border-emerald-300 hover:shadow-lg transition-all duration-300">
+              <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center">
+                <Target className="w-6 h-6 text-emerald-700" />
               </div>
 
-              <h3 className="mt-5 text-xl font-bold text-gray-900">
+              <h3 className="mt-5 text-xl font-bold text-emerald-950">
                 Our Mission
               </h3>
 
-              <p className="mt-3 text-gray-600 leading-relaxed">
-                To deliver practical, reliable, and sustainable energy
-                solutions that create lasting value for our customers.
+              <p className="mt-3 text-emerald-900/70 leading-relaxed">
+                To engineer practical, reliable, and sustainable energy
+                solutions that reduce costs, improve energy resilience, and
+                create lasting value for our customers.
               </p>
+
+              <div className="mt-6 h-1 w-16 rounded-full bg-emerald-500 group-hover:w-24 transition-all duration-300" />
             </div>
 
             {/* Vision */}
-            <div className="group p-7 rounded-2xl bg-gray-50 border border-gray-100 hover:border-green-200 hover:shadow-lg transition-all duration-300">
-              <div className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center">
-                <Eye className="w-6 h-6 text-green-700" />
+            <div className="group p-7 rounded-2xl bg-sky-50 border border-sky-200 hover:border-sky-300 hover:shadow-lg transition-all duration-300">
+              <div className="w-12 h-12 rounded-xl bg-sky-100 flex items-center justify-center">
+                <Eye className="w-6 h-6 text-sky-700" />
               </div>
 
-              <h3 className="mt-5 text-xl font-bold text-gray-900">
+              <h3 className="mt-5 text-xl font-bold text-sky-950">
                 Our Vision
               </h3>
 
-              <p className="mt-3 text-gray-600 leading-relaxed">
-                To be a trusted renewable energy partner across East Africa,
-                accelerating the transition to cleaner energy.
+              <p className="mt-3 text-sky-900/70 leading-relaxed">
+                To become a trusted energy engineering partner across East
+                Africa, helping customers take control of their energy costs
+                and transition toward smarter, cleaner power.
               </p>
+
+              <div className="mt-6 h-1 w-16 rounded-full bg-sky-500 group-hover:w-24 transition-all duration-300" />
             </div>
 
             {/* Values */}
-            <div className="group p-7 rounded-2xl bg-gray-50 border border-gray-100 hover:border-green-200 hover:shadow-lg transition-all duration-300">
-              <div className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center">
-                <Leaf className="w-6 h-6 text-green-700" />
+            <div className="group p-7 rounded-2xl bg-amber-50 border border-amber-200 hover:border-amber-300 hover:shadow-lg transition-all duration-300">
+              <div className="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center">
+                <Leaf className="w-6 h-6 text-amber-700" />
               </div>
 
-              <h3 className="mt-5 text-xl font-bold text-gray-900">
+              <h3 className="mt-5 text-xl font-bold text-amber-950">
                 Our Values
               </h3>
 
-              <p className="mt-3 text-gray-600 leading-relaxed">
-                Integrity, innovation, quality, sustainability, and a strong
-                commitment to customer satisfaction.
+              <p className="mt-3 text-amber-900/70 leading-relaxed">
+                Integrity, practical innovation, quality, transparency,
+                sustainability, and a commitment to long-term customer value.
               </p>
+
+              <div className="mt-6 h-1 w-16 rounded-full bg-amber-500 group-hover:w-24 transition-all duration-300" />
             </div>
 
           </div>

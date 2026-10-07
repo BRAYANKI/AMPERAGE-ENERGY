@@ -1,43 +1,39 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { FormEvent, useState } from "react";
 import {
-  Phone,
+  ArrowRight,
+  CheckCircle2,
   Mail,
   MapPin,
-  Clock3,
-  Send,
+  Phone,
 } from "lucide-react";
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    subject: "",
-    message: "",
-  });
-
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
 
     setLoading(true);
     setSuccess("");
     setError("");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      subject: formData.get("subject"),
+      interest: formData.get("interest"),
+      customerType: formData.get("customerType"),
+      electricityBill: formData.get("electricityBill"),
+      message: formData.get("message"),
+    };
 
     try {
       const response = await fetch("/api/contact", {
@@ -45,390 +41,376 @@ export default function Contact() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(data),
       });
 
-      const data = await response.json();
+      const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Something went wrong");
+        throw new Error(result.error || "Something went wrong.");
       }
 
-      setSuccess("Your message has been sent successfully!");
+      setSuccess(
+        "Thank you. Your energy assessment request has been sent successfully."
+      );
 
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-      });
+      form.reset();
     } catch (err) {
       setError(
         err instanceof Error
           ? err.message
-          : "Failed to send your message."
+          : "Something went wrong. Please try again."
       );
     } finally {
       setLoading(false);
     }
-  };
+  }
 
   return (
-    <section id="contact" className="py-24 bg-gray-50">
+    <section
+      id="contact"
+      className="bg-gray-50 py-24"
+    >
       <div className="max-w-7xl mx-auto px-6">
 
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <p className="text-sm font-bold tracking-[0.2em] uppercase text-green-600">
-            Contact Us
+        {/* Header */}
+        <div className="max-w-3xl mx-auto text-center mb-14">
+          <p className="text-green-700 font-semibold text-sm uppercase tracking-widest">
+            Get Started
           </p>
 
-          <h2 className="mt-4 text-4xl md:text-5xl font-bold text-gray-900">
-            Let&apos;s Power Your Future
+          <h2 className="mt-3 text-4xl md:text-5xl font-bold text-gray-900">
+            Let&apos;s engineer a better energy solution
           </h2>
 
-          <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
-            Ready to power your home or business with renewable energy?
-            Our team is here to answer your questions and provide expert
-            guidance.
+          <p className="mt-5 text-lg text-gray-600 leading-relaxed">
+            Tell us about your energy needs and our team will assess your
+            requirements and recommend a practical solution.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-5 gap-10 items-start">
 
-          {/* Contact Information */}
-          <motion.div
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="space-y-6"
-          >
+          {/* Contact information */}
+          <div className="lg:col-span-2 bg-green-950 text-white rounded-2xl p-8 md:p-10">
 
-            {/* Phone */}
-            <div className="flex items-start gap-4 bg-white p-6 rounded-2xl shadow-lg">
-              <Phone className="w-8 h-8 text-green-600 shrink-0" />
-
-              <div>
-                <h3 className="font-bold text-xl text-gray-900">
-                  Call Us
-                </h3>
-
-                <a
-                  href="tel:+254726050901"
-                  className="text-gray-600 mt-2 block hover:text-green-600 transition"
-                >
-                  +254 726 050 901
-                </a>
-              </div>
-            </div>
-
-            {/* Email */}
-            <div className="flex items-start gap-4 bg-white p-6 rounded-2xl shadow-lg">
-              <Mail className="w-8 h-8 text-green-600 shrink-0" />
-
-              <div>
-                <h3 className="font-bold text-xl text-gray-900">
-                  Email Us
-                </h3>
-
-                <a
-                  href="mailto:info@amperageenergy.com"
-                  className="text-gray-600 mt-2 block hover:text-green-600 transition"
-                >
-                  info@amperageenergy.com
-                </a>
-              </div>
-            </div>
-
-            {/* Location */}
-            <div className="flex items-start gap-4 bg-white p-6 rounded-2xl shadow-lg">
-              <MapPin className="w-8 h-8 text-green-600 shrink-0" />
-
-              <div>
-                <h3 className="font-bold text-xl text-gray-900">
-                  Visit Us
-                </h3>
-
-                <p className="text-gray-600 mt-2">
-                  Tatu City
-                  <br />
-                  Along Jacaranda Road
-                  <br />
-                  Kenya
-                </p>
-              </div>
-            </div>
-
-            {/* Working Hours */}
-            <div className="flex items-start gap-4 bg-white p-6 rounded-2xl shadow-lg">
-              <Clock3 className="w-8 h-8 text-green-600 shrink-0" />
-
-              <div>
-                <h3 className="font-bold text-xl text-gray-900">
-                  Working Hours
-                </h3>
-
-                <p className="text-gray-600 mt-2">
-                  Monday - Friday
-                  <br />
-                  8:00 AM - 5:00 PM
-                </p>
-              </div>
-            </div>
-
-            {/* Social Media */}
-            <div className="bg-white p-6 rounded-2xl shadow-lg">
-              <h3 className="font-bold text-xl text-gray-900 mb-4">
-                Follow Us
-              </h3>
-
-              <div className="flex items-center gap-4">
-
-                {/* Facebook */}
-                <a
-                  href="https://www.facebook.com/share/1BhygU6ZTc/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Amperage Energy on Facebook"
-                  className="w-11 h-11 rounded-full bg-green-700 text-white flex items-center justify-center hover:bg-green-800 transition"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    className="w-5 h-5"
-                    aria-hidden="true"
-                  >
-                    <path d="M14 8h3V4h-3c-2.76 0-5 2.24-5 5v3H6v4h3v8h4v-8h3l1-4h-4V9c0-.55.45-1 1-1z" />
-                  </svg>
-                </a>
-
-                {/* TikTok */}
-                <a
-                  href="https://www.tiktok.com/@amperage.energy.sol?_r=1&_t=ZS-98sUkvpkmXg"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Amperage Energy on TikTok"
-                  className="w-11 h-11 rounded-full bg-green-700 text-white flex items-center justify-center hover:bg-green-800 transition"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    className="w-5 h-5"
-                    aria-hidden="true"
-                  >
-                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.9 2.9 0 1 1-2-2.76V9.4a6.32 6.32 0 1 0 5.45 6.27V8.26a8.16 8.16 0 0 0 4.77 1.52V6.69h-1z" />
-                  </svg>
-                </a>
-
-              </div>
-            </div>
-
-          </motion.div>
-
-          {/* Contact Form */}
-          <motion.form
-            onSubmit={handleSubmit}
-            initial={{ opacity: 0, x: 60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="bg-white rounded-2xl shadow-xl p-8"
-          >
-
-            <h3 className="text-2xl font-bold text-gray-900">
-              Request a Consultation
-            </h3>
-
-            <p className="mt-2 text-gray-600">
-              Tell us about your energy needs and our team will get back to
-              you.
+            <p className="text-green-300 font-semibold text-sm uppercase tracking-widest">
+              Amperage Energy
             </p>
 
-            {/* Name + Email */}
-            <div className="grid md:grid-cols-2 gap-6 mt-7">
+            <h3 className="mt-4 text-3xl font-bold">
+              Start with an energy assessment
+            </h3>
 
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-gray-700 mb-2"
-                >
-                  Full Name
-                </label>
+            <p className="mt-5 text-green-100 leading-relaxed">
+              Whether you are looking to reduce electricity costs, improve
+              power reliability, or explore solar and energy storage, we can
+              help you evaluate the right approach.
+            </p>
 
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  autoComplete="name"
-                  placeholder="John Kibet"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-green-600"
-                />
+            <div className="mt-10 space-y-6">
+
+              <div className="flex gap-4">
+                <div className="w-11 h-11 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
+                  <Phone className="w-5 h-5" />
+                </div>
+
+                <div>
+                  <p className="text-sm text-green-300">
+                    Phone
+                  </p>
+                  <p className="mt-1 font-medium">
+                    Contact our energy team
+                  </p>
+                </div>
               </div>
 
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 mb-2"
-                >
-                  Email Address
-                </label>
+              <div className="flex gap-4">
+                <div className="w-11 h-11 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
+                  <Mail className="w-5 h-5" />
+                </div>
 
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  placeholder="you@example.com"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-green-600"
-                />
+                <div>
+                  <p className="text-sm text-green-300">
+                    Email
+                  </p>
+                  <p className="mt-1 font-medium break-all">
+                    info@amperageenergy.com
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="w-11 h-11 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
+                  <MapPin className="w-5 h-5" />
+                </div>
+
+                <div>
+                  <p className="text-sm text-green-300">
+                    Location
+                  </p>
+                  <p className="mt-1 font-medium">
+                    Tatu City, Along Jacaranda Road
+                  </p>
+                </div>
               </div>
 
             </div>
 
-            {/* Phone */}
-            <div className="mt-6">
-              <label
-                htmlFor="phone"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Phone Number
-              </label>
-
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                autoComplete="tel"
-                placeholder="+254 726 050 901"
-                value={formData.phone}
-                onChange={handleChange}
-                required
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-green-600"
-              />
-            </div>
-
-            {/* Subject */}
-            <div className="mt-6">
-              <label
-                htmlFor="subject"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Subject
-              </label>
-
-              <input
-                id="subject"
-                name="subject"
-                type="text"
-                placeholder="Solar Installation Inquiry"
-                value={formData.subject}
-                onChange={handleChange}
-                required
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-green-600"
-              />
-            </div>
-
-            {/* Message */}
-            <div className="mt-6">
-              <label
-                htmlFor="message"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Message
-              </label>
-
-              <textarea
-                id="message"
-                name="message"
-                rows={6}
-                placeholder="Tell us about your project..."
-                value={formData.message}
-                onChange={handleChange}
-                required
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-green-600"
-              />
-            </div>
-
-            {/* Success */}
-            {success && (
-              <p
-                role="status"
-                className="mt-6 text-green-700 font-medium"
-              >
-                {success}
+            <div className="mt-10 pt-8 border-t border-white/10">
+              <p className="text-sm text-green-200">
+                Practical Engineering • Professional Installation • Reliable
+                Support
               </p>
-            )}
-
-            {/* Error */}
-            {error && (
-              <p
-                role="alert"
-                className="mt-6 text-red-600 font-medium"
-              >
-                {error}
-              </p>
-            )}
-
-            {/* Submit */}
-            <button
-              type="submit"
-              disabled={loading}
-              className="mt-6 bg-green-700 hover:bg-green-800 disabled:bg-gray-400 text-white px-8 py-3 rounded-lg flex items-center gap-2 transition focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
-            >
-              <Send className="w-5 h-5" />
-
-              {loading ? "Sending..." : "Send Message"}
-            </button>
-
-          </motion.form>
-        </div>
-      </div>
-
-      {/* Google Map */}
-      <div className="max-w-7xl mx-auto px-6 mt-24">
-
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
-            Visit Our Office
-          </h2>
-
-          <p className="text-center text-gray-600 mb-10">
-            Find us in Tatu City along Jacaranda Road.
-          </p>
-
-          <div className="rounded-3xl overflow-hidden shadow-2xl border border-gray-200">
-
-            <iframe
-              src="https://www.google.com/maps?q=Tatu%20City%2C%20Jacaranda%20Road%2C%20Kenya&output=embed"
-              width="100%"
-              height="500"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="strict-origin-when-cross-origin"
-              title="Amperage Energy Location - Tatu City"
-            />
-
+            </div>
           </div>
-        </motion.div>
 
+          {/* Form */}
+          <div className="lg:col-span-3 bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-10">
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+
+              <div className="grid md:grid-cols-2 gap-5">
+
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-semibold text-gray-700 mb-2"
+                  >
+                    Full Name *
+                  </label>
+
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    required
+                    placeholder="Your full name"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-semibold text-gray-700 mb-2"
+                  >
+                    Email Address *
+                  </label>
+
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="you@example.com"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                  />
+                </div>
+
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-5">
+
+                <div>
+                  <label
+                    htmlFor="phone"
+                    className="block text-sm font-semibold text-gray-700 mb-2"
+                  >
+                    Phone Number *
+                  </label>
+
+                  <input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    required
+                    placeholder="+254 7XX XXX XXX"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="customerType"
+                    className="block text-sm font-semibold text-gray-700 mb-2"
+                  >
+                    Customer Type *
+                  </label>
+
+                  <select
+                    id="customerType"
+                    name="customerType"
+                    required
+                    defaultValue=""
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 bg-white outline-none focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                  >
+                    <option value="" disabled>
+                      Select customer type
+                    </option>
+                    <option value="Homeowner">Homeowner</option>
+                    <option value="Business">Business</option>
+                    <option value="Institution">Institution</option>
+                    <option value="Industrial">Industrial</option>
+                  </select>
+                </div>
+
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-5">
+
+                <div>
+                  <label
+                    htmlFor="interest"
+                    className="block text-sm font-semibold text-gray-700 mb-2"
+                  >
+                    I'm Interested In *
+                  </label>
+
+                  <select
+                    id="interest"
+                    name="interest"
+                    required
+                    defaultValue=""
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 bg-white outline-none focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                  >
+                    <option value="" disabled>
+                      Select a service
+                    </option>
+                    <option value="Solar Installation">
+                      Solar Installation
+                    </option>
+                    <option value="Battery Storage">
+                      Battery Storage
+                    </option>
+                    <option value="Energy Audit">
+                      Energy Audit
+                    </option>
+                    <option value="Heat Pump">
+                      Heat Pump
+                    </option>
+                    <option value="Maintenance">
+                      Maintenance & Support
+                    </option>
+                    <option value="Other">
+                      Other
+                    </option>
+                  </select>
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="electricityBill"
+                    className="block text-sm font-semibold text-gray-700 mb-2"
+                  >
+                    Average Monthly Electricity Bill
+                  </label>
+
+                  <select
+                    id="electricityBill"
+                    name="electricityBill"
+                    defaultValue=""
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 bg-white outline-none focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                  >
+                    <option value="">
+                      Select range
+                    </option>
+                    <option value="Below KES 10,000">
+                      Below KES 10,000
+                    </option>
+                    <option value="KES 10,000 - 50,000">
+                      KES 10,000 - 50,000
+                    </option>
+                    <option value="KES 50,000 - 100,000">
+                      KES 50,000 - 100,000
+                    </option>
+                    <option value="KES 100,000 - 250,000">
+                      KES 100,000 - 250,000
+                    </option>
+                    <option value="Above KES 250,000">
+                      Above KES 250,000
+                    </option>
+                  </select>
+                </div>
+
+              </div>
+
+              <div>
+                <label
+                  htmlFor="subject"
+                  className="block text-sm font-semibold text-gray-700 mb-2"
+                >
+                  Subject *
+                </label>
+
+                <input
+                  id="subject"
+                  name="subject"
+                  type="text"
+                  required
+                  placeholder="How can we help?"
+                  className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-semibold text-gray-700 mb-2"
+                >
+                  Tell us about your energy needs *
+                </label>
+
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows={5}
+                  placeholder="Tell us about your current energy setup, electricity costs, power challenges, or what you would like to achieve."
+                  className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none resize-none focus:border-green-600 focus:ring-2 focus:ring-green-100"
+                />
+              </div>
+
+              {/* Success message */}
+              {success && (
+                <div className="flex items-start gap-3 rounded-lg bg-green-50 border border-green-200 p-4 text-green-800">
+                  <CheckCircle2 className="w-5 h-5 mt-0.5 shrink-0" />
+                  <p className="text-sm font-medium">
+                    {success}
+                  </p>
+                </div>
+              )}
+
+              {/* Error message */}
+              {error && (
+                <div className="rounded-lg bg-red-50 border border-red-200 p-4 text-red-700">
+                  <p className="text-sm font-medium">
+                    {error}
+                  </p>
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="group w-full flex items-center justify-center gap-2 bg-green-600 text-white px-6 py-4 rounded-lg font-semibold hover:bg-green-700 disabled:opacity-60 disabled:cursor-not-allowed transition"
+              >
+                {loading ? "Sending Request..." : "Request Energy Assessment"}
+
+                {!loading && (
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                )}
+              </button>
+
+              <p className="text-xs text-gray-500 text-center">
+                By submitting this form, you are requesting an energy
+                assessment from Amperage Energy.
+              </p>
+
+            </form>
+          </div>
+
+        </div>
       </div>
     </section>
   );

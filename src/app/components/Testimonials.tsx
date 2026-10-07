@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import { Quote, Star, ArrowRight, Zap } from "lucide-react";
+import { Quote, Star, ArrowRight, Zap, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 
 const testimonials = [
@@ -10,21 +10,21 @@ const testimonials = [
     role: "Business Owner",
     image: "/client1.jpg",
     review:
-      "Amperage Energy transformed our business with a reliable solar solution. Our electricity costs have dropped significantly, and the system has given us greater confidence in our power supply.",
+      "Amperage Energy transformed the way we manage our energy. The solar solution has helped reduce our electricity costs while giving us greater confidence in the reliability of our power supply.",
   },
   {
     name: "Grace Jepkorir",
     role: "Homeowner",
     image: "/client2.jpg",
     review:
-      "Professional team, timely installation, and excellent after-sales support. The entire process was handled efficiently, and I would highly recommend Amperage Energy.",
+      "The entire process was handled professionally, from the initial consultation through installation and support. The team was responsive, efficient, and made the transition to solar straightforward.",
   },
   {
     name: "Peter Otieno",
     role: "School Director",
     image: "/client3.jpg",
     review:
-      "Their solar installation has helped us maintain reliable power for our institution and ensured uninterrupted learning. Excellent workmanship and customer service.",
+      "Amperage Energy delivered a dependable solar solution for our institution. The system has helped us maintain reliable power for our operations while reducing our dependence on grid electricity.",
   },
 ];
 
@@ -61,6 +61,7 @@ export default function Testimonials() {
       {/* Background Energy Effects */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -left-40 top-20 h-96 w-96 rounded-full bg-green-400/10 blur-3xl" />
+
         <div className="absolute -right-40 bottom-0 h-[28rem] w-[28rem] rounded-full bg-emerald-400/10 blur-3xl" />
 
         {/* Technical Grid */}
@@ -75,7 +76,9 @@ export default function Testimonials() {
 
         {/* Decorative Energy Lines */}
         <div className="absolute left-[8%] top-[22%] h-px w-32 bg-gradient-to-r from-transparent via-green-500/30 to-transparent" />
+
         <div className="absolute right-[8%] top-[30%] h-px w-40 bg-gradient-to-r from-transparent via-green-500/30 to-transparent" />
+
         <div className="absolute bottom-[20%] left-[15%] h-px w-28 bg-gradient-to-r from-transparent via-green-500/20 to-transparent" />
       </div>
 
@@ -100,13 +103,14 @@ export default function Testimonials() {
           </div>
 
           <h2 className="text-4xl font-bold tracking-tight text-gray-950 md:text-5xl lg:text-6xl">
-            What Our{" "}
-            <span className="text-green-700">Clients Say</span>
+            Trusted to Engineer
+            <span className="text-green-700"> Better Energy</span>
           </h2>
 
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-gray-600 md:text-lg">
-            We are proud to deliver reliable renewable energy solutions
-            that create lasting value for homes, businesses, and institutions.
+            From homes and businesses to institutions, our customers trust us
+            to deliver practical energy solutions built around reliability,
+            efficiency, and long-term value.
           </p>
         </motion.div>
 
@@ -149,25 +153,28 @@ export default function Testimonials() {
               </div>
 
               {/* Review */}
-              <p className="relative min-h-[145px] text-[16px] leading-7 text-gray-600 md:text-[17px]">
+              <p className="relative min-h-[155px] text-[16px] leading-7 text-gray-600 md:text-[17px]">
                 &quot;{testimonial.review}&quot;
               </p>
 
-              {/* Rating */}
-              <div
-                className="mt-7 flex items-center gap-1"
-                aria-label="5 out of 5 stars"
-              >
-                {[...Array(5)].map((_, starIndex) => (
-                  <Star
-                    key={starIndex}
-                    className="h-[18px] w-[18px] fill-amber-400 text-amber-400"
-                  />
-                ))}
+              {/* Rating / Verification */}
+              <div className="mt-7 flex items-center justify-between">
+                <div
+                  className="flex items-center gap-1"
+                  aria-label="5 out of 5 stars"
+                >
+                  {[...Array(5)].map((_, starIndex) => (
+                    <Star
+                      key={starIndex}
+                      className="h-[17px] w-[17px] fill-amber-400 text-amber-400"
+                    />
+                  ))}
+                </div>
 
-                <span className="ml-2 text-xs font-semibold text-gray-400">
-                  5.0
-                </span>
+                <div className="flex items-center gap-1.5 text-xs font-semibold text-green-700">
+                  <CheckCircle2 className="h-4 w-4" />
+                  Client Experience
+                </div>
               </div>
 
               {/* Divider */}
@@ -219,22 +226,31 @@ export default function Testimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="mt-20 text-center"
+          className="mt-20"
         >
-          <p className="mb-5 text-sm font-medium text-gray-500">
-            Ready to experience reliable and sustainable energy?
-          </p>
+          <div className="mx-auto flex max-w-4xl flex-col items-center justify-between gap-6 rounded-2xl border border-green-100 bg-white px-7 py-7 shadow-sm md:flex-row md:px-9">
+            <div className="text-center md:text-left">
+              <p className="text-lg font-bold text-gray-900">
+                Ready to take control of your energy costs?
+              </p>
 
-          <a
-            href="#contact"
-            className="group inline-flex items-center gap-3 rounded-xl bg-green-700 px-7 py-3.5 font-semibold text-white shadow-lg shadow-green-700/20 transition-all duration-300 hover:-translate-y-1 hover:bg-green-800 hover:shadow-xl hover:shadow-green-700/25"
-          >
-            Start Your Project
+              <p className="mt-1 text-sm text-gray-500">
+                Let&apos;s understand your energy profile and engineer the
+                right solution.
+              </p>
+            </div>
 
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/15 transition-transform duration-300 group-hover:translate-x-1">
-              <ArrowRight className="h-4 w-4" />
-            </span>
-          </a>
+            <a
+              href="#contact"
+              className="group inline-flex items-center gap-3 whitespace-nowrap rounded-xl bg-green-700 px-7 py-3.5 font-semibold text-white shadow-lg shadow-green-700/20 transition-all duration-300 hover:-translate-y-1 hover:bg-green-800 hover:shadow-xl hover:shadow-green-700/25"
+            >
+              Get My Energy Assessment
+
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/15 transition-transform duration-300 group-hover:translate-x-1">
+                <ArrowRight className="h-4 w-4" />
+              </span>
+            </a>
+          </div>
         </motion.div>
       </div>
     </section>
