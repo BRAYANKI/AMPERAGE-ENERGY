@@ -20,7 +20,7 @@ const partners = [
   },
   {
     name: "SOLIS",
-    image: "/solis.png",
+    image: "/Solis.png",
   },
   {
     name: "FOX ESS",
@@ -28,11 +28,11 @@ const partners = [
   },
   {
     name: "JINKO",
-    image: "/jinko.png",
+    image: "/Jinko.png",
   },
   {
     name: "LONGi",
-    image: "/longi.png",
+    image: "/Longi.png",
   },
   {
     name: "HUAWEI",
