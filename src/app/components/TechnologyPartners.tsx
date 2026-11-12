@@ -36,7 +36,7 @@ const partners = [
   },
   {
     name: "HUAWEI",
-    image: "/huawei.png",
+    image: "/Huawei.png",
   },
 ];
 
